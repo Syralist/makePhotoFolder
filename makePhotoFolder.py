@@ -3,6 +3,7 @@ import pathlib
 
 basepath = pathlib.Path("P:/")
 
+
 def makePhotoFolder(folderName, namedSubfolders=True):
     uneditedFolder = basepath / folderName / "unbearbeitet"
     uneditedFolder.mkdir(parents=True)
@@ -11,6 +12,7 @@ def makePhotoFolder(folderName, namedSubfolders=True):
         SteffiFolder.mkdir(parents=True)
         ThomasFolder = uneditedFolder / "Thomas"
         ThomasFolder.mkdir(parents=True)
+
 
 class makePhotoFolderUI(wx.Frame):
     def __init__(self, parent, title):
@@ -39,7 +41,7 @@ class makePhotoFolderUI(wx.Frame):
         self.SetSizer(self.sizerMain)
         self.Fit()
         self.Show()
-    
+
     def checkPath(self, event):
         if event.String:
             newPath = basepath / event.String
@@ -52,10 +54,11 @@ class makePhotoFolderUI(wx.Frame):
         else:
             self.stateName.SetLabel("Namen eingeben")
             self.stateName.SetBackgroundColour(self.GetBackgroundColour())
-    
+
     def makePath(self, event):
         makePhotoFolder(self.inputName.GetValue(), self.checkSubFolder.GetValue())
         self.inputName.SetValue("")
+
 
 app = wx.App()
 frame = makePhotoFolderUI(None, "Photoordner erzeugen")
